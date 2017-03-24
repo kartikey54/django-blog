@@ -6,10 +6,8 @@ Features:
 
 * Dynamic blog articles
 * Blog pages
-* Contact us page (configurable)
-* google analytics
 * SEO compliant
-
+* Enable or disable readers to comment on your posts
 # Requirements
 
 * Django 1.9 or later
