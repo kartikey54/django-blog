@@ -14,5 +14,5 @@ Features:
 
 * Django 1.9 or later
 * Django-tagging
-  (to install use 'pip install django-tagging'
+  (to install use 'pip install django-tagging')
   
