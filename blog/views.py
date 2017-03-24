@@ -63,10 +63,6 @@ post_archive_day.__doc__ = date_based.archive_day.__doc__
 
 
 def post_detail(request, slug, year, month, day, **kwargs):
-    """
-    Displays post detail. If user is superuser, view will display 
-    unpublished post detail for previewing purposes.
-    """
     posts = None
     if request.user.is_superuser:
         posts = Post.objects.all()
@@ -86,14 +82,6 @@ post_detail.__doc__ = date_based.object_detail.__doc__
 
 
 def category_list(request, template_name = 'blog/category_list.html', **kwargs):
-    """
-    Category list
-
-    Template: ``blog/category_list.html``
-    Context:
-        object_list
-            List of categories.
-    """
     return list_detail.object_list(
         request,
         queryset=Category.objects.all(),
@@ -103,16 +91,6 @@ def category_list(request, template_name = 'blog/category_list.html', **kwargs):
 
 
 def category_detail(request, slug, template_name = 'blog/category_detail.html', **kwargs):
-    """
-    Category detail
-
-    Template: ``blog/category_detail.html``
-    Context:
-        object_list
-            List of posts specific to the given category.
-        category
-            Given category.
-    """
     category = get_object_or_404(Category, slug__iexact=slug)
 
     return list_detail.object_list(
@@ -125,16 +103,6 @@ def category_detail(request, slug, template_name = 'blog/category_detail.html', 
 
 
 def tag_detail(request, slug, template_name = 'blog/tag_detail.html', **kwargs):
-    """
-    Tag detail
-
-    Template: ``blog/tag_detail.html``
-    Context:
-        object_list
-            List of posts specific to the given tag.
-        tag
-            Given tag.
-    """
     tag = get_object_or_404(Tag, name__iexact=slug)
 
     return list_detail.object_list(
@@ -147,20 +115,6 @@ def tag_detail(request, slug, template_name = 'blog/tag_detail.html', **kwargs):
 
 
 def search(request, template_name='blog/post_search.html'):
-    """
-    Search for blog posts.
-
-    This template will allow you to setup a simple search form that will try to return results based on
-    given search strings. The queries will be put through a stop words filter to remove words like
-    'the', 'a', or 'have' to help imporve the result set.
-
-    Template: ``blog/post_search.html``
-    Context:
-        object_list
-            List of blog posts that match given search term(s).
-        search_term
-            Given search term.
-    """
     context = {}
     if request.GET:
         stop_word_list = re.compile(STOP_WORDS_RE, re.IGNORECASE)
